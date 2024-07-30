@@ -1,0 +1,55 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".cargo/**"
+      - "**/*.rs"
+      - "**/Cargo.*"
+      - "light-prover/**"
+      - ".github/workflows/rust.yml"
+  pull_request:
+    branches:
+      - "*"
+    paths:
+      - "**/*.rs"
+      - "**/Cargo.*"
+      - "light-prover/**"
+      - ".github/workflows/rust.yml"
+
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+name: rust
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Setup and build
+        uses: ./.github/actions/setup-and-build
+
+      # concurrent merkle tree crate must run in isolation because otherwise it
+      # tries to use the idl-build feature (which fails).
+      - name: Test workspace (excluding light-concurrent-merkle-tree)
+        run: |
+          source ./scripts/devenv.sh
+          echo "Rust version: $(rustc --version)"
+          RUST_MIN_STACK=8388608 RUSTFLAGS="-D warnings" cargo test --all-targets --workspace --exclude light-concurrent-merkle-tree --exclude photon-api --exclude forester
+
+      - name: Test light-concurrent-merkle-tree
+        run: |
+          source ./scripts/devenv.sh
+          echo "Rust version: $(rustc --version)"
+          RUST_MIN_STACK=8388608 RUSTFLAGS="-D warnings" cargo test --all-targets --package light-concurrent-merkle-tree

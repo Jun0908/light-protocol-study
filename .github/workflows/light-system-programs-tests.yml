@@ -1,0 +1,94 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "programs/**"
+      - "test-programs/**"
+      - "circuit-lib/verifier/**"
+      - "merkle-tree/**"
+      - ".github/workflows/light-system-programs-tests.yml"
+      - "test-utils/**"
+  pull_request:
+    branches:
+      - "*"
+    paths:
+      - "programs/**"
+      - "test-programs/**"
+      - "circuit-lib/verifier/**"
+      - "merkle-tree/**"
+      - ".github/workflows/light-system-programs-tests.yml"
+      - "test-utils/**"
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+name: system-programs-examples-tests
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  system-programs:
+    name: system-programs
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      matrix:
+        include:
+          - program: account-compression
+            sub-tests: '[
+              "cargo-test-sbf -p account-compression-test"
+            ]'
+          - program: light-system-program
+            sub-tests: '[
+              "cargo-test-sbf -p system-test -- --test-threads=1"
+            ]'
+          - program: light-registry
+            sub-tests: '[
+              "cargo-test-sbf -p registry-test -- --test-threads=1"
+            ]'
+          - program: light-compressed-token
+            sub-tests: '[
+              "cargo-test-sbf -p compressed-token-test -- --test-threads=1"
+            ]'
+          - program: system-cpi-test
+            sub-tests: '[
+              "cargo-test-sbf -p system-cpi-test -- --test-threads=1"
+            ]'
+          - program: random-e2e-test
+            sub-tests: '[
+              "RUST_MIN_STACK=8388608 cargo-test-sbf -p e2e-test -- --nocapture --test-threads=1"
+            ]'
+          - program: token-escrow-test
+            sub-tests: '[
+              "cargo test-sbf -p token-escrow -- --test-threads=1"
+            ]'
+            
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Setup and build
+        uses: ./.github/actions/setup-and-build
+
+      - name: build-programs
+        run: |
+          source ./scripts/devenv.sh
+          anchor build
+
+      - name: ${{ matrix.program }}
+        run: |
+          source ./scripts/devenv.sh
+          
+          IFS=',' read -r -a sub_tests <<< "${{ join(fromJSON(matrix['sub-tests']), ', ') }}"
+          for subtest in "${sub_tests[@]}"
+          do
+            echo "$subtest"
+            eval "RUSTFLAGS=\"-D warnings\" $subtest"
+          done

@@ -1,0 +1,52 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - "*"
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+name: js-tests
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  stateless-js:
+    name: stateless-js
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Setup and build
+        uses: ./.github/actions/setup-and-build
+
+      - name: Build CLI
+        run: |
+          source ./scripts/devenv.sh
+          npx nx build @lightprotocol/zk-compression-cli --skip-nx-cache
+
+      # Commented for breaking changes to Photon
+      - name: Run CLI tests
+        run: |
+          source ./scripts/devenv.sh
+          npx nx test @lightprotocol/zk-compression-cli
+
+      - name: Run stateless.js tests
+        run: |
+          source ./scripts/devenv.sh
+          npx nx test @lightprotocol/stateless.js
+
+      - name: Run compressed-token tests
+        run: |
+          source ./scripts/devenv.sh
+          npx nx test @lightprotocol/compressed-token

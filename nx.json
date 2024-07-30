@@ -1,0 +1,69 @@
+{
+  "namedInputs": {
+    "noMarkdown": [
+      "!{workspaceRoot}/**/*.md"
+    ],
+    "noTestLedger": [
+      "!{workspaceRoot}/test-ledger"
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "cache": false,
+      "inputs": [
+        "noMarkdown",
+        "^noMarkdown",
+        "noTestLedger",
+        "^noTestLedger"
+      ],
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{workspaceRoot}/target/deploy",
+        "{workspaceRoot}/target/idl",
+        "{workspaceRoot}/target/types"
+      ]
+    },
+    "test": {
+      "cache": false,
+      "inputs": [
+        "noMarkdown",
+        "^noMarkdown",
+        "noTestLedger",
+        "^noTestLedger"
+      ],
+      "dependsOn": [
+        "^build",
+        "build"
+      ]
+    },
+    "format": {
+      "cache": false,
+      "inputs": [
+        "noMarkdown",
+        "^noMarkdown",
+        "noTestLedger",
+        "^noTestLedger"
+      ]
+    },
+    "format:check": {
+        "cache": false,
+        "inputs": [
+            "noMarkdown",
+            "^noMarkdown",
+            "noTestLedger",
+            "^noTestLedger"
+        ]
+    },
+    "lint": {
+      "cache": false,
+      "inputs": [
+        "noMarkdown",
+        "^noMarkdown",
+        "noTestLedger",
+        "^noTestLedger"
+      ]
+    }
+  }
+}

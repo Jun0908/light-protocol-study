@@ -1,0 +1,12 @@
+packages:
+  - "tsconfig/**"
+  - "programs/**"
+  - "circuit-lib/**"
+  - "hasher.rs/**"
+  - "cli/**"
+  - "account-compression/programs/**"
+  - "sdk/**"
+  - "js/stateless.js/**"
+  - "js/compressed-token/**"
+  - "examples/**"
+  - "forester/**"

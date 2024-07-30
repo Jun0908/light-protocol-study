@@ -1,0 +1,37 @@
+name: Release prover binaries
+on:
+  push:
+    tags:
+      - 'light-prover*'
+
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.21
+
+      - name: Build artifacts
+        run: |
+          cd light-prover
+          for cfgstr in "darwin amd64" "darwin arm64" "linux amd64" "windows amd64"; do
+            IFS=' ' read -r -a cfg <<< "$cfgstr"
+            export GOOS="${cfg[0]}"
+            export GOARCH="${cfg[1]}"
+            export CGO_ENABLED=0
+            go build -o prover-"$GOOS"-"$GOARCH"
+          done
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            light-prover/prover-darwin-amd64
+            light-prover/prover-darwin-arm64
+            light-prover/prover-linux-amd64
+            light-prover/prover-windows-amd64

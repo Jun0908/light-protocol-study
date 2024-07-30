@@ -1,0 +1,18 @@
+assets/ @SwenSchaeferjohann
+circuit-lib/ @ananas-block @sergeytimoshin
+cli/ @ananas-block @sergeytimoshin
+hasher.rs/ @sergeytimoshin
+macro-circom/ @ananas-block
+macros/ @vadorovsky
+merkle-tree/ @ananas-block @vadorovsky
+programs/ @ananas-block @vadorovsky
+prover.js/ @sergeytimoshin
+examples/ @ananas-block @SwenSchaeferjohann
+rpc/ @sergeytimoshin @SwenSchaeferjohann
+scripts/ @vadorovsky
+third-party/ @vadorovsky
+tsconfig/ @SwenSchaeferjohann
+utils/ @vadorovsky
+verifier-sdk/ @ananas-block @vadorovsky
+web/ @SwenSchaeferjohann
+xtask/ @vadorovsky

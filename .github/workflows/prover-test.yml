@@ -1,0 +1,55 @@
+name: Test gnark prover
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "light-prover/**"
+      - ".github/workflows/prover-test.yml"
+      - ".github/workflows/prover-release.yml"
+  pull_request:
+    branches:
+      - "*"
+    paths:
+      - "light-prover/**"
+      - ".github/workflows/prover-test.yml"
+      - ".github/workflows/prover-release.yml"
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+jobs:
+  build-and-test:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: "./light-prover/go.mod"
+
+      - name: Download keys
+        run: |
+          cd light-prover
+          ./scripts/download_keys.sh
+
+      - name: Build
+        run: |
+          cd light-prover
+          go build
+
+      - name: Unit tests
+        run: |
+          cd light-prover
+          go test ./prover -timeout 30m
+
+      - name: Integration tests
+        run: |
+          cd light-prover
+          go test -timeout 30m

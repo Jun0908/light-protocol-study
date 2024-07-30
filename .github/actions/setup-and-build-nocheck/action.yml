@@ -1,0 +1,77 @@
+name: Setup and build nocheck
+description: Checkout sources, install dependencies, build and prepare for tests
+inputs:
+  branch:
+    description: "Branch to checkout"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout sources
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ inputs.branch }}
+
+    - name: Restore .local directory cache
+      id: restore-local-cache
+      uses: actions/cache@v3
+      with:
+        path: |
+          .local
+          light-prover/proving-keys
+        key: ${{ runner.os }}-local-${{ hashFiles('scripts/install.sh') }}
+
+    - name: Install dependencies
+      if: steps.restore-local-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        ./scripts/install.sh
+
+    - name: Set local environment
+      shell: bash
+      run: |
+        source ./scripts/devenv.sh
+
+    - name: Rust cache
+      uses: swatinem/rust-cache@v2
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        run_install: false
+
+    - name: Get pnpm store directory
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+    - uses: actions/cache@v4
+      name: Setup pnpm cache
+      with:
+        path: ${{ env.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install
+
+    - name: Build and prepare for tests
+      shell: bash
+      run: |
+        source ./scripts/devenv.sh
+        mkdir -p /home/runner/.config/solana/
+        solana-keygen new --no-bip39-passphrase -o /home/runner/.config/solana/id.json
+        npx nx build @lightprotocol/hasher.rs
+        npx nx build @lightprotocol/programs
+        npx nx build @lightprotocol/zk-compression-cli
+
+    - name: Cache .local directory
+      uses: actions/cache@v3
+      with:
+        path: |
+          .local
+          light-prover/proving-keys
+        key: ${{ runner.os }}-local-${{ hashFiles('scripts/install.sh') }}

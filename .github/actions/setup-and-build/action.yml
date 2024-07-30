@@ -1,0 +1,97 @@
+name: Setup and build
+description: Checkout sources, install dependencies, build and prepare for tests
+
+runs:
+  using: "composite"
+  steps:
+    - name: Free Disk Space (Ubuntu)
+      uses: jlumbroso/free-disk-space@main
+      with:
+        tool-cache: false
+        swap-storage: false
+        large-packages: false
+        docker-images: false
+
+    - name: Checkout sources
+      uses: actions/checkout@v4
+
+    - name: Restore .local directory cache
+      id: restore-local-cache
+      uses: actions/cache@v4
+      with:
+        path: |
+          .local
+          light-prover/proving-keys
+        key: ${{ runner.os }}-local-${{ hashFiles('scripts/install.sh', 'light-prover/scripts/download_keys.sh') }}
+
+    - name: Install dependencies
+      if: steps.restore-local-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        ./scripts/install.sh
+
+    - name: Set local environment
+      shell: bash
+      run: |
+        source ./scripts/devenv.sh
+
+    - name: Rust cache
+      uses: swatinem/rust-cache@v2
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        run_install: true
+
+    - name: Get pnpm store directory
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+    - uses: actions/cache@v4
+      name: Setup pnpm cache
+      with:
+        path: ${{ env.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+
+    - name: Generate Solana keypair
+      shell: bash
+      run: |
+        source ./scripts/devenv.sh
+        mkdir -p /home/runner/.config/solana/
+        solana-keygen new --no-bip39-passphrase -o /home/runner/.config/solana/id.json
+        
+    - name: Copy spl_noop.so to target/deploy
+      shell: bash
+      run: |
+        mkdir -p ./target/deploy
+        cp ./third-party/solana-program-library/spl_noop.so ./target/deploy/spl_noop.so
+
+    - name: Cache .local directory
+      if: steps.restore-local-cache.outputs.cache-hit != 'true'
+      uses: actions/cache@v4
+      with:
+        path: |
+          .local
+          light-prover/proving-keys
+        key: ${{ runner.os }}-local-${{ hashFiles('scripts/install.sh', 'light-prover/scripts/download_keys.sh') }}
+
+    - name: Check for git changes
+      shell: bash
+      run: |
+        # Check for unstaged changes
+        if ! git diff --quiet; then
+          echo "There are unstaged changes after build!"
+          git diff
+          exit 1
+        fi
+
+        # Check for uncommitted changes
+        if ! git diff --staged --quiet; then
+          echo "There are uncommitted changes after build!"
+          exit 1
+        fi
+
+        echo "No changes detected."
