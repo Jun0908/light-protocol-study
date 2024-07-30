@@ -5,7 +5,7 @@
 ## モノレポのビルド
 
 以下の手順でモノレポをビルドします。
-
+. ./scripts/devenv.shは点を二つ付けることが重要です。これをしないとエラーがでます
 ```bash
 cd examples/browser/nextjs
 . ./scripts/devenv.sh &&
@@ -25,9 +25,7 @@ pnpm dev
 This will serve and mount the app at http://localhost:1234 and run the code defined in page.tsx.
 
 ##　参照
+
 https://www.zkcompression.com/
-
 https://docs.lightprotocol.com/
-
 https://github.com/unchain-tech/UNCHAIN-projects/blob/main/docs/Solana-dApp/ja/section-2/lesson-1_Solana%20%E3%81%AE%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%97%E3%82%88%E3%81%86%EF%BC%81.md
-
