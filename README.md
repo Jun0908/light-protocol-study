@@ -12,7 +12,7 @@ ZK圧縮技術によりデータ保存コストを削減し、データの正確
 ### ▶︎How to Use Light Protocol
 このプロジェクトでは、ブラウザ環境でZK Compression APIと対話するために`@lightprotocol/stateless.js`を使用する方法を示します。
 
-### Building a monorepo
+### ▶︎Building a monorepo
 
 以下の手順で環境設定をします。
 Node >= v20.9.0に設定をします。
