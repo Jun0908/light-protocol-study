@@ -1,6 +1,7 @@
 # Solana Mini Hackathon
 
-▶︎Overview
+##▶︎Overview
+
 zk-Compressionはライトプロトコル（Light Protocol）が、データインフラを提供するヘリウス（Helius）と連携し、ソラナ（Solana）上で圧縮されたデータを簡単に利用可能にするインフラです。今回のハッカソンではLight Protocolを実装いたしました。
 
 ▶︎Problems
