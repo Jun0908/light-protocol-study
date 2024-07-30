@@ -2,11 +2,15 @@
 
 ### ▶︎Overview
 
-zk-Compressionはライトプロトコル（Light Protocol）が、データインフラを提供するヘリウス（Helius）と連携し、ソラナ（Solana）上で圧縮されたデータを簡単に利用可能にするインフラです。今回のハッカソンではLight Protocolを実装いたしました。
+ZK圧縮(zk-Compression)はライトプロトコル（Light Protocol）が、データインフラを提供するヘリウス（Helius）と連携し、ソラナ（Solana）上で圧縮されたデータを簡単に利用可能にするインフラです。今回のハッカソンではLight Protocolを実装いたしました。
 
 ### ▶︎Problems
 
+ブロックチェーンのデータ保存コストが高く、データの正確性とプライバシーを両立させる管理が難しい。また、大規模なユーザー導入にはアカウントスペース確保のための高額なコストが発生する。
+
 ### ▶︎Solution
+
+ZK圧縮技術によりデータ保存コストを削減し、データの正確性とプライバシーを確保。さらに、ライトプロトコルとヘリウスの連携で技術理解不要な効率的なデータ管理が可能となり、アカウントスペース確保コストも大幅に削減できる。
 
 ### ▶︎How to Use Light Protocol
 
@@ -45,6 +49,21 @@ pnpm dev
 ```
 
 This will serve and mount the app at http://localhost:1234 and run the code defined in page.tsx.
+
+### ▶︎Demo Movie
+
+https://youtu.be/bXMbdqoG3sE
+
+### ▶︎Prospective
+安価にデータをオンチェーンに保存できるデータ圧縮技術を用いて今まで保存が難しかった音楽や学習済みデータをオンチェーンに保存したい。
+
+①音楽のオンチェーンの保存技術　申請者が開発
+
+https://github.com/Jun0908/Chacha-GPT
+
+②学習済みデータのオンチェーンの保存技術
+
+現在開発中
 
 ### ▶︎Reference
 
