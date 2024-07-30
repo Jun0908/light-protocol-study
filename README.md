@@ -5,7 +5,7 @@
 ## モノレポのビルド
 
 以下の手順でモノレポをビルドします。
-. ./scripts/devenv.shは点を二つ付けることが重要です。これをしないとエラーがでます
+. ./scripts/devenv.shは点を二つ付けることが重要です。これをしないとエラーがでます。
 build.shまでの実行で30分近くかかります。
 ```bash
 cd examples/browser/nextjs
