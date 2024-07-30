@@ -11,7 +11,7 @@ cd examples/browser/nextjs
 . ./scripts/devenv.sh &&
 ./scripts/install.sh &&
 ./scripts/build.sh
-
+```
 
 Start a light test-validator using the CLI
 ```bash
@@ -20,7 +20,7 @@ light test-validator
 Start the app
 cd ../examples/browser/nextjs &&
 pnpm dev
-
+```
 
 This will serve and mount the app at http://localhost:1234 and run the code defined in page.tsx.
 
