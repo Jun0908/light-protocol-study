@@ -4,7 +4,7 @@
 
 ## モノレポのビルド
 
-以下の手順でモノレポをビルドします。
+以下の手順で環境設定をします。
 ```bash
 npm install -g @lightprotocol/zk-compression-cli
 git clone git@github.com:Lightprotocol/light-protocol.git
