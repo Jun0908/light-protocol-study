@@ -20,8 +20,6 @@ By utilizing zk-Compression technology, data storage costs are reduced while ens
 
 In this project, we demonstrate how to use @lightprotocol/stateless.js to interact with the ZK Compression API in a browser environment.
 
-**Building a monorepo**
-
 以下の手順で環境設定をします。
 Node >= v20.9.0に設定をします。
 
