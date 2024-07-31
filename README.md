@@ -27,6 +27,10 @@ Node >= v20.9.0に設定をします。
 
 Unchainの環境設定の方法を見ながらSolanaの環境設定を行ってください
 
+Set up your environment with Node >= v20.9.0.
+
+Follow the instructions for setting up the Unchain environment and configure your Solana environment accordingly.
+
 https://github.com/unchain-tech/UNCHAIN-projects/blob/main/docs/Solana-dApp/ja/section-2/lesson-1_Solana%20%E3%81%AE%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89%E3%81%97%E3%82%88%E3%81%86%EF%BC%81.md
 
 ```bash
@@ -36,6 +40,9 @@ git clone git@github.com:Lightprotocol/light-protocol.git
 
 . ./scripts/devenv.shは点を二つ付けることが重要です。これをしないとエラーがでます。
 build.shまでの実行で30分近くかかります。
+
+It is important to include two dots when running . ./scripts/devenv.sh. If you don't, it will cause an error. The process can take up to 30 minutes to complete, up to the execution of build.sh.
+
 ```bash
 cd examples/browser/nextjs
 . ./scripts/devenv.sh &&
@@ -61,11 +68,13 @@ https://youtu.be/bXMbdqoG3sE
 ### ▶︎Prospective
 安価にデータをオンチェーンに保存できるデータ圧縮技術を用いて今まで保存が難しかった音楽や学習済みデータをオンチェーンに保存したい。
 
-**①音楽のオンチェーンの保存技術　申請者が開発**
+We want to use data compression technology that allows for cost-effective on-chain data storage, making it possible to store previously challenging data such as music and trained models on-chain.
+
+**①音楽のオンチェーンの保存技術　申請者が開発/ The applicant developed technology for storing music on-chain**
 
 https://github.com/Jun0908/Chacha-GPT
 
-**②学習済みデータのオンチェーンの保存技術 現在開発中**
+**②学習済みデータのオンチェーンの保存技術 現在開発中/ On-chain storage technology for trained models is currently under development**
 
 https://github.com/Jun0908/Trained_Model_Converter
 
