@@ -3,14 +3,22 @@
 ### ▶︎Overview
 ZK圧縮(zk-Compression)はライトプロトコル（Light Protocol）が、データインフラを提供するヘリウス（Helius）と連携し、ソラナ（Solana）上で圧縮されたデータを簡単に利用可能にするインフラです。今回のハッカソンではLight Protocolを実装いたしました。
 
+ZK compression is an infrastructure provided by Light Protocol, in collaboration with Helius, which offers data infrastructure. It makes compressed data easily accessible on Solana. In this hackathon, we implemented Light Protocol.
+
 ### ▶︎Problems
 ブロックチェーンのデータ保存コストが高く、データの正確性とプライバシーを両立させる管理が難しい。また、大規模なユーザー導入にはアカウントスペース確保のための高額なコストが発生する。
+
+The cost of data storage on the blockchain is high, and it is challenging to manage both data accuracy and privacy. Additionally, large-scale user adoption incurs significant costs for securing account space.
 
 ### ▶︎Solution
 ZK圧縮技術によりデータ保存コストを削減し、データの正確性とプライバシーを確保。さらに、ライトプロトコルとヘリウスの連携で技術理解不要な効率的なデータ管理が可能となり、アカウントスペース確保コストも大幅に削減できる。
 
+By utilizing zk-Compression technology, data storage costs are reduced while ensuring data accuracy and privacy. Furthermore, the collaboration between Light Protocol and Helius enables efficient data management without the need for technical understanding, significantly reducing the costs associated with securing account space.
+
 ### ▶︎How to Use Light Protocol
 このプロジェクトでは、ブラウザ環境でZK Compression APIと対話するために`@lightprotocol/stateless.js`を使用する方法を示します。
+
+In this project, we demonstrate how to use @lightprotocol/stateless.js to interact with the ZK Compression API in a browser environment.
 
 **Building a monorepo**
 
