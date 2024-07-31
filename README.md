@@ -57,9 +57,9 @@ https://youtu.be/bXMbdqoG3sE
 
 https://github.com/Jun0908/Chacha-GPT
 
-**②学習済みデータのオンチェーンの保存技術**
+**②学習済みデータのオンチェーンの保存技術 現在開発中**
 
-現在開発中
+https://github.com/Jun0908/Trained_Model_Converter
 
 ### ▶︎Reference
 
