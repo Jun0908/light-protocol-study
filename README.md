@@ -5,8 +5,25 @@ ZK圧縮(zk-Compression)はライトプロトコル（Light Protocol）が、デ
 
 ZK compression is an infrastructure provided by Light Protocol, in collaboration with Helius, which offers data infrastructure. It makes compressed data easily accessible on Solana. In this hackathon, we implemented Light Protocol.
 
+**約5000倍近くのコストの削減できる**
+
+ZK圧縮(zk-Compression)はState Compressionなしの場合100万ユーザーに仮想通貨をエアドロップする時にかかる
+260,000ドルが、ZK圧縮だと5,200分の1と安くなり、50ドルほどまで減らせる。
+
+**マークルツリーを使った圧縮技術**
+https://chaldene.net/markle-tree
+https://docs.lightprotocol.com/learn/core-concepts/state-trees
+
+
 ### ▶︎Problems
-ブロックチェーンのデータ保存コストが高く、データの正確性とプライバシーを両立させる管理が難しい。また、大規模なユーザー導入にはアカウントスペース確保のための高額なコストが発生する。
+ブロックチェーンのデータ保存コストが高く、データの正確性とプライバシーを両立させる管理が難しい。
+そのため、オフチェーンにデータを保存しているが下記の問題点がある
+
+①IPFSに保存されたデータがピン留めされていない場合、データが削除される可能性がある。
+
+②ブロックチェーン上にはIPFSのハッシュ値などのリファレンス情報が保存されますが、オフチェーンデータが変更されたり、消失した場合、リファレンス情報が無効になる可能性がある。
+
+③アップグレード可能なコントラクトの場合、CIDを含むデータを変更できる可能性がある。
 
 The cost of data storage on the blockchain is high, and it is challenging to manage both data accuracy and privacy. Additionally, large-scale user adoption incurs significant costs for securing account space.
 
@@ -14,6 +31,23 @@ The cost of data storage on the blockchain is high, and it is challenging to man
 ZK圧縮技術によりデータ保存コストを削減し、データの正確性とプライバシーを確保。さらに、ライトプロトコルとヘリウスの連携で技術理解不要な効率的なデータ管理が可能となり、アカウントスペース確保コストも大幅に削減できる。
 
 By utilizing zk-Compression technology, data storage costs are reduced while ensuring data accuracy and privacy. Furthermore, the collaboration between Light Protocol and Helius enables efficient data management without the need for technical understanding, significantly reducing the costs associated with securing account space.
+
+### ▶︎Demo Movie
+
+https://youtu.be/bXMbdqoG3sE
+
+### ▶︎Prospective
+安価にデータをオンチェーンに保存できるデータ圧縮技術を用いて今まで保存が難しかった音楽や学習済みデータをオンチェーンに保存したい。
+
+We want to use data compression technology that allows for cost-effective on-chain data storage, making it possible to store previously challenging data such as music and trained models on-chain.
+
+**①音楽のオンチェーンの保存技術　申請者が開発/ The applicant developed technology for storing music on-chain**
+
+https://github.com/Jun0908/Chacha-GPT
+
+**②学習済みデータのオンチェーンの保存技術 現在開発中/ On-chain storage technology for trained models is currently under development**
+
+https://github.com/Jun0908/Trained_Model_Converter
 
 ### ▶︎How to Use Light Protocol
 このプロジェクトでは、ブラウザ環境でZK Compression APIと対話するために`@lightprotocol/stateless.js`を使用する方法を示します。
@@ -58,23 +92,6 @@ pnpm dev
 ```
 
 This will serve and mount the app at http://localhost:1234 and run the code defined in page.tsx.
-
-### ▶︎Demo Movie
-
-https://youtu.be/bXMbdqoG3sE
-
-### ▶︎Prospective
-安価にデータをオンチェーンに保存できるデータ圧縮技術を用いて今まで保存が難しかった音楽や学習済みデータをオンチェーンに保存したい。
-
-We want to use data compression technology that allows for cost-effective on-chain data storage, making it possible to store previously challenging data such as music and trained models on-chain.
-
-**①音楽のオンチェーンの保存技術　申請者が開発/ The applicant developed technology for storing music on-chain**
-
-https://github.com/Jun0908/Chacha-GPT
-
-**②学習済みデータのオンチェーンの保存技術 現在開発中/ On-chain storage technology for trained models is currently under development**
-
-https://github.com/Jun0908/Trained_Model_Converter
 
 ### ▶︎Reference
 
