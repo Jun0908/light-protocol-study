@@ -33,10 +33,6 @@ ZK圧縮技術によりデータ保存コストを削減し、データの正確
 
 By utilizing zk-Compression technology, data storage costs are reduced while ensuring data accuracy and privacy. Furthermore, the collaboration between Light Protocol and Helius enables efficient data management without the need for technical understanding, significantly reducing the costs associated with securing account space.
 
-### ▶︎Demo Movie
-
-https://youtu.be/bXMbdqoG3sE
-
 ### ▶︎Prospective
 安価にデータをオンチェーンに保存できるデータ圧縮技術を用いて今まで保存が難しかった音楽や学習済みデータをオンチェーンに保存したい。
 
@@ -49,6 +45,10 @@ https://github.com/Jun0908/Chacha-GPT
 **②学習済みデータのオンチェーンの保存技術 現在開発中/ On-chain storage technology for trained models is currently under development**
 
 https://github.com/Jun0908/Trained_Model_Converter
+
+### ▶︎Demo Movie
+
+https://youtu.be/bXMbdqoG3sE
 
 ### ▶︎How to Use Light Protocol
 このプロジェクトでは、ブラウザ環境でZK Compression APIと対話するために`@lightprotocol/stateless.js`を使用する方法を示します。
