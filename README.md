@@ -29,11 +29,12 @@ https://docs.lightprotocol.com/learn/core-concepts/state-trees
 The cost of data storage on the blockchain is high, and it is challenging to manage both data accuracy and privacy. Additionally, large-scale user adoption incurs significant costs for securing account space.
 
 ### ▶︎Solution
-ZK圧縮技術によりデータ保存コストを削減し、データの正確性とプライバシーを確保。さらに、ライトプロトコルとヘリウスの連携で技術理解不要な効率的なデータ管理が可能となり、アカウントスペース確保コストも大幅に削減できる。
+ZK圧縮技術によりデータ保存コストを大幅に削減し、データの正確性とプライバシーを確保することができる。
+データをオンチェーンに保存する
 
 By utilizing zk-Compression technology, data storage costs are reduced while ensuring data accuracy and privacy. Furthermore, the collaboration between Light Protocol and Helius enables efficient data management without the need for technical understanding, significantly reducing the costs associated with securing account space.
 
-### ▶︎Prospective
+### ▶︎Usage
 安価にデータをオンチェーンに保存できるデータ圧縮技術を用いて今まで保存が難しかった音楽や学習済みデータをオンチェーンに保存したい。
 
 We want to use data compression technology that allows for cost-effective on-chain data storage, making it possible to store previously challenging data such as music and trained models on-chain.
