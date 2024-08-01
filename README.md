@@ -10,11 +10,15 @@ ZK compression is an infrastructure provided by Light Protocol, in collaboration
 ZK圧縮(zk-Compression)はState Compressionなしの場合100万ユーザーに仮想通貨をエアドロップする時にかかる
 260,000ドルが、ZK圧縮だと5,200分の1と安くなり、50ドルほどまで減らせる。
 
+![画像1](https://github.com/user-attachments/assets/6bd315a0-bb08-4566-a032-b61506ed6a0c)
+
 **マークルツリーを使った圧縮技術**
 
 https://chaldene.net/markle-tree
 
 https://docs.lightprotocol.com/learn/core-concepts/state-trees
+
+![画像2](https://github.com/user-attachments/assets/1553be8b-6df5-4d43-a947-8450d1ecdbb3)
 
 ### ▶︎Problems
 ブロックチェーンのデータ保存コストが高く、データの正確性とプライバシーを両立させる管理が難しい。
