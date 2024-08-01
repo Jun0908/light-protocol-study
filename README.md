@@ -11,9 +11,10 @@ ZK圧縮(zk-Compression)はState Compressionなしの場合100万ユーザーに
 260,000ドルが、ZK圧縮だと5,200分の1と安くなり、50ドルほどまで減らせる。
 
 **マークルツリーを使った圧縮技術**
-https://chaldene.net/markle-tree
-https://docs.lightprotocol.com/learn/core-concepts/state-trees
 
+https://chaldene.net/markle-tree
+
+https://docs.lightprotocol.com/learn/core-concepts/state-trees
 
 ### ▶︎Problems
 ブロックチェーンのデータ保存コストが高く、データの正確性とプライバシーを両立させる管理が難しい。
