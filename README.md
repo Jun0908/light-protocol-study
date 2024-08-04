@@ -1,4 +1,4 @@
-# zk-Compression　Sample
+# zk-Compression Sample
 
 ### ▶︎Overview
 ZK圧縮(zk-Compression)の学習サイトです。ZK圧縮(zk-Compression)はライトプロトコル（Light Protocol）が、データインフラを提供するヘリウス（Helius）と連携し、ソラナ（Solana）上で圧縮されたデータを簡単に利用可能にするインフラです。
