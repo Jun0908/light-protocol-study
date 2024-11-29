@@ -52,6 +52,6 @@ light-merkle-tree-reference = { version = "0.3.0", path = "../merkle-tree/refere
 light-indexed-merkle-tree = { version = "0.3.0", path = "../merkle-tree/indexed/" }
 num-bigint = "0.4.6"
 num-traits = "0.2.19"
-lazy_static = "1.4.0"
+lazy_static = "1.5.0"
 light-hash-set = { version = "0.3.0", path = "../merkle-tree/hash-set", features = ["solana"] }
 rand = "0.8.5"
